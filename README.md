@@ -24,7 +24,7 @@ utils
 
 ```ts
 // package.json
-"dependencies": { "react-helpers-web": "github:Conduct/react-helpers-web" }
+"dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native" }
 ```
 
 ## Development
