@@ -29,7 +29,7 @@ utils
 
 ## TransitonView
 
-A wrapper to animate child components
+A wrapper to animate child components  
 ![Example](TransitionViewExample.gif)
 
 Animate a views children by using a TransitionView, supporting
