@@ -30,7 +30,7 @@ utils
 ## TransitonView
 
 A wrapper to animate child components  
-Some example uses:
+example uses:
 
 - Accordion content
 - Fading loading spinner
@@ -80,7 +80,7 @@ type Props = {
   childWrapperStyle?: StyleProp<ViewStyle>; // for the view wrapping each child (to measure height)
   childOuterWrapperStyle?: StyleProp<ViewStyle>; // for the view wrapping each child wrapper (to set y position)
   renderWhenNoChildren?: boolean;
-  overflow?: OverflowMode;
+  overflow?: OverflowMode; // "hidden" | "visible" | "whenShrinking" | "whenGrowing"
   direction?: "vertical" | "horizontal";
   children: FadableChild[] | FadableChild; // ReactElement | false | null | undefined
   initialChildHeight?: number;
