@@ -38,8 +38,8 @@ Animate a views children by using a TransitionView, supporting
 - sliding existing items
 - auto height transitions
 
+`NOTE: each child needs a unique key`  
 _Hiding/showing form input error text_
-`NOTE: each child needs a unique key`
 
 ```tsx
 <TransitionView contentChangedKey={inlineErrorTexts.join("")} overflow="hidden">
