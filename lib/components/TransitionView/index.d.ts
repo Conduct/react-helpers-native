@@ -1,0 +1,20 @@
+import React, { ReactElement } from "react";
+import { ViewProps, StyleProp, ViewStyle } from "react-native";
+declare type FadableChild = ReactElement | false | null | undefined;
+declare type OverflowMode = "hidden" | "visible" | "whenShrinking" | "whenGrowing";
+declare type Props = {
+    contentChangedKey: string | boolean;
+    speed?: number;
+    style?: StyleProp<ViewStyle>;
+    childWrapperStyle?: StyleProp<ViewStyle>;
+    childOuterWrapperStyle?: StyleProp<ViewStyle>;
+    renderWhenNoChildren?: boolean;
+    overflow?: OverflowMode;
+    direction?: "vertical" | "horizontal";
+    children: FadableChild[] | FadableChild;
+    initialChildHeight?: number;
+    hasBackground?: boolean;
+    slideExistingItems?: boolean;
+} & ViewProps;
+declare const TransitionView: React.FC<Props>;
+export default TransitionView;
