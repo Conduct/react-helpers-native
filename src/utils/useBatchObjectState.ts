@@ -1,11 +1,4 @@
-import React, {
-  ReactElement,
-  useState,
-  useRef,
-  ComponentProps,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useState, useRef, useCallback } from "react";
 
 // a useState that batches multiple setStates into one on the next frame to prevent many rerenders
 // It can be useful for a component where children update the parents state
@@ -23,7 +16,6 @@ export default function useBatchObjectState<
 
   const setThisStateOnNextFrame = useCallback(
     (newPartialState: Partial<T_StateObject>) => {
-      console.log(newPartialState);
       local.statesToMerge.push(newPartialState);
       if (!local.frameIsQueued) {
         local.frameIsQueued = true;
