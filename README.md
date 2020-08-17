@@ -27,6 +27,61 @@ utils
 "dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native" }
 ```
 
+## TransitonView
+
+A wrapper to animate child components
+![Example](TransitionViewExample.gif)
+
+Animate a views children by using a TransitionView, supporting
+
+- crossfading
+- sliding existing items
+- auto height transitions
+
+_Hiding/showing form input error text_
+`NOTE: each child needs a unique key`
+
+```tsx
+<TransitionView contentChangedKey={inlineErrorTexts.join("")} overflow="hidden">
+  {hasVisibleErrors && (
+    <Text key={inlineErrorTexts.join("")} style={styles.errors}>
+      {inlineErrorTexts.join(", ")}
+    </Text>
+  )}
+</TransitionView>
+```
+
+_Showing an animated list_
+
+```tsx
+<TransitionView contentChangedKey={wordList.join("")} slideExistingItems>
+  {wordList.map((word) => (
+    <View key={word} style={{ padding: 4, margin: 4 }}>
+      <Text> {word} </Text>
+    </View>
+  ))}
+</TransitionView>
+```
+
+_Props_
+
+```ts
+type Props = {
+  contentChangedKey: string | boolean; // lets the component know the content has changed
+  speed?: number; // multiplies the default speed (1.0 is default)
+  style?: StyleProp<ViewStyle>;
+  childWrapperStyle?: StyleProp<ViewStyle>; // for the view wrapping each child (to measure height)
+  childOuterWrapperStyle?: StyleProp<ViewStyle>; // for the view wrapping each child wrapper (to set y position)
+  renderWhenNoChildren?: boolean;
+  overflow?: OverflowMode;
+  direction?: "vertical" | "horizontal";
+  children: FadableChild[] | FadableChild; // ReactElement | false | null | undefined
+  initialChildHeight?: number;
+  hasBackground?: boolean; // whether the faded content has a background, enabling this stops a flash of 0.5 opacity when fading between two items
+  slideExistingItems?: boolean; // So children with same keys slide to new positions instead of fading out and in
+} & ViewProps;
+```
+
 ## Development
 
 For a quick way to edit this package, add `📂src` to your project as a renamed local folder like `📂react-helpers-native-dev`, and replacing imports from `"react-helpers-native"` to `"react-helpers-native-dev"`.  
