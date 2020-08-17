@@ -7,8 +7,8 @@ declare type AddFlexOptions = {
 export declare function addFlex({ x, y, direction }: AddFlexOptions): {
     readonly display: "flex";
     readonly flexDirection: "row" | "column";
-    readonly alignItems: "stretch" | "center" | "flex-start" | "flex-end";
-    readonly justifyContent: "center" | "space-between" | "flex-start" | "flex-end";
+    readonly alignItems: "center" | "stretch" | "flex-start" | "flex-end";
+    readonly justifyContent: "center" | "flex-start" | "flex-end" | "space-between";
 };
 declare type UseAbsoluteOptions = {
     left?: number | string;

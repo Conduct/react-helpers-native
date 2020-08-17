@@ -14,8 +14,8 @@ import {
   ViewStyle,
 } from "react-native";
 import { useSpring, useTransition } from "react-spring/native";
-import { AnimatedView } from "components/animated";
-import usePrevious from "utils/usePrevious";
+import { AnimatedView } from "../../components/animated";
+import usePrevious from "../../utils/usePrevious";
 
 type FadableChild = ReactElement | false | null | undefined;
 
