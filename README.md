@@ -30,6 +30,13 @@ utils
 ## TransitonView
 
 A wrapper to animate child components  
+Some example uses:
+
+- Accordion content
+- Fading loading spinner
+- Routing content transitions
+- Auto animated lists / search results
+
 ![Example](TransitionViewExample.gif)
 
 Animate a views children by using a TransitionView, supporting
