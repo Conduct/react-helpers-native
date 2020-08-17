@@ -16,6 +16,7 @@ import {
 import { useSpring, useTransition } from "react-spring/native";
 import { AnimatedView } from "../../components/animated";
 import usePrevious from "../../utils/usePrevious";
+import useBatchObjectState from "../../utils/useBatchObjectState";
 
 type FadableChild = ReactElement | false | null | undefined;
 
@@ -57,9 +58,10 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
   slideExistingItems = true,
   ...otherProps
 }) => {
-  const [measuredChildHeightsByKey, setMeasuredChildHeightsByKey] = useState(
-    {} as Record<string, number>
-  );
+  const [
+    measuredChildHeightsByKey,
+    setMeasuredChildHeightsByKey,
+  ] = useBatchObjectState({} as Record<string, number>);
 
   const childrenArray = React.Children.toArray(children) as ReactElement[];
   // like "this" , stores values in an object so callbacks can use the latest values
@@ -201,10 +203,9 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
                 if (measuredChildHeightsByKey[id] === height) {
                   return;
                 }
-                setMeasuredChildHeightsByKey((state) => ({
-                  ...state,
+                setMeasuredChildHeightsByKey({
                   [id]: nativeEvent.layout.height,
-                }));
+                });
               }}
             >
               {childElement}

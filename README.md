@@ -2,7 +2,7 @@
 
 components
 
-- TransitionView 🔶 Todo: update with useBatchObjectState
+- TransitionView ✅
 - KeyboardAvoidingView
 - animated (AnimatedView AnimatedText) ✅
 
@@ -11,7 +11,7 @@ hooks
 - useSafeArea
 - useKeyboard
 - usePrevious ✅
-- useBatchObjectState
+- useBatchObjectState ✅
 
 utils
 
