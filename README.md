@@ -81,7 +81,7 @@ type Props = {
   childOuterWrapperStyle?: StyleProp<ViewStyle>; // for the view wrapping each child wrapper (to set y position)
   renderWhenNoChildren?: boolean;
   overflow?: OverflowMode; // "hidden" | "visible" | "whenShrinking" | "whenGrowing"
-  direction?: "vertical" | "horizontal";
+  direction?: "vertical" | "horizontal"; // TODO
   children: FadableChild[] | FadableChild; // ReactElement | false | null | undefined
   initialChildHeight?: number;
   hasBackground?: boolean; // whether the faded content has a background, enabling this stops a flash of 0.5 opacity when fading between two items
