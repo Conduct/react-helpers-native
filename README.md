@@ -26,6 +26,8 @@ utils
 // package.json
 "dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native" }
 ```
+to avoid unexpected version updates, a specific commit of the package can be installed
+`"github:Conduct/react-helpers-native#commit"`
 
 ## TransitonView
 
