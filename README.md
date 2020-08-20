@@ -27,7 +27,7 @@ utils
 "dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native#v0.1.5" }
 ```
 
-installing a specific version tag helps to avoid unexpected updates
+_installing a specific version tag helps to avoid unexpected updates_
 
 ## TransitonView
 
