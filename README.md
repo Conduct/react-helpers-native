@@ -24,10 +24,10 @@ utils
 
 ```ts
 // package.json
-"dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native" }
+"dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native#v0.1.5" }
 ```
-to avoid unexpected version updates, a specific commit of the package can be installed
-`"github:Conduct/react-helpers-native#commit"`
+
+installing a specific version tag helps to avoid unexpected updates
 
 ## TransitonView
 
