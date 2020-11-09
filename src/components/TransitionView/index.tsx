@@ -236,8 +236,6 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
     <View
       style={styles.growToParentWrapper}
       onLayout={({ nativeEvent }) => {
-        console.log("nativeEvent.layout.height");
-        console.log(nativeEvent.layout.height);
         const height = nativeEvent.layout.height;
         if (measuredParentHeight === height) {
           return;
