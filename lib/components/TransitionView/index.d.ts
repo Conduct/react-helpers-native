@@ -15,6 +15,7 @@ declare type Props = {
     initialChildHeight?: number;
     hasBackground?: boolean;
     slideExistingItems?: boolean;
+    fillParentHeight?: boolean;
 } & ViewProps;
 declare const TransitionView: React.FC<Props>;
 export default TransitionView;

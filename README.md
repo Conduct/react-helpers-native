@@ -95,3 +95,7 @@ type Props = {
 
 For a quick way to edit this package, add `📂src` to your project as a renamed local folder like `📂react-helpers-native-dev`, and replacing imports from `"react-helpers-native"` to `"react-helpers-native-dev"`.  
 Enabling `"baseUrl":` in `tsconfig.json` allows non-relative imports
+
+After making changes, update the files in this libraries src folder, update the version number in package.json, remove node_modules and lib folders, and run `npm install`.
+
+Then the library can be pushed , ideally with a new tag with the version number added.

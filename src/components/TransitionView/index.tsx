@@ -37,6 +37,8 @@ type Props = {
   hasBackground?: boolean;
   // So children with same keys slide to new positions instead of fading out and in
   slideExistingItems?: boolean;
+  // To allow flex: 1 styling so a child view can fill its parent height, sets all childrens min height to the parents height, best for single child transitions
+  fillParentHeight?: boolean;
 } & ViewProps;
 
 /*
@@ -56,12 +58,15 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
   hasBackground = false,
   initialChildHeight = 0,
   slideExistingItems = true,
+  fillParentHeight = false,
   ...otherProps
 }) => {
   const [
     measuredChildHeightsByKey,
     setMeasuredChildHeightsByKey,
   ] = useBatchObjectState({} as Record<string, number>);
+
+  const [measuredParentHeight, setMeasuredParentHeight] = useState(0);
 
   const childrenArray = React.Children.toArray(children) as ReactElement[];
   // like "this" , stores values in an object so callbacks can use the latest values
@@ -119,7 +124,7 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
   }
 
   const heightMotionProps = useSpring({
-    height: local.totalChildrenHeight,
+    height: Math.max(local.totalChildrenHeight, measuredParentHeight),
     config: {
       bounce: 0,
       friction: 25,
@@ -168,7 +173,7 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
     return null;
   }
 
-  return (
+  const mainTransitionView = (
     <AnimatedView
       style={[
         {
@@ -192,12 +197,20 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
                 transform: [{ translateY }],
                 opacity,
                 zIndex,
+                minHeight: fillParentHeight ? measuredParentHeight : undefined,
               },
               childOuterWrapperStyle,
             ]}
           >
             <View
-              style={childWrapperStyle}
+              style={[
+                childWrapperStyle,
+                {
+                  minHeight: fillParentHeight
+                    ? measuredParentHeight
+                    : undefined,
+                },
+              ]}
               onLayout={({ nativeEvent }) => {
                 const height = nativeEvent.layout.height;
                 if (measuredChildHeightsByKey[id] === height) {
@@ -215,6 +228,26 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
       })}
     </AnimatedView>
   );
+
+  if (!fillParentHeight) {
+    return mainTransitionView;
+  }
+  return (
+    <View
+      style={styles.growToParentWrapper}
+      onLayout={({ nativeEvent }) => {
+        console.log("nativeEvent.layout.height");
+        console.log(nativeEvent.layout.height);
+        const height = nativeEvent.layout.height;
+        if (measuredParentHeight === height) {
+          return;
+        }
+        setMeasuredParentHeight(nativeEvent.layout.height);
+      }}
+    >
+      {mainTransitionView}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -223,6 +256,11 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     width: "100%",
+  },
+  growToParentWrapper: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "blue",
   },
 });
 
