@@ -88,6 +88,7 @@ type Props = {
   initialChildHeight?: number;
   hasBackground?: boolean; // whether the faded content has a background, enabling this stops a flash of 0.5 opacity when fading between two items
   slideExistingItems?: boolean; // So children with same keys slide to new positions instead of fading out and in
+  fillParentHeight?: boolean; // fills the parent elements height instead of shrinking to children, still grows with children
 } & ViewProps;
 ```
 

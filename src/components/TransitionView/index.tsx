@@ -5,7 +5,7 @@ View that can cross fade between multiple children
 - it also supports rearraging children if they move
 */
 
-import React, { ReactElement, useState, useRef } from "react";
+import React, { ReactElement, useState, useRef, useEffect } from "react";
 import {
   ViewProps,
   View,
@@ -37,8 +37,7 @@ type Props = {
   hasBackground?: boolean;
   // So children with same keys slide to new positions instead of fading out and in
   slideExistingItems?: boolean;
-  // To allow flex: 1 styling so a child view can fill its parent height, sets all childrens min height to the parents height, best for single child transitions
-  fillParentHeight?: boolean;
+  fillParentHeight?: boolean; // fills the parent elements height instead of shrinking to children, still grows with children
 } & ViewProps;
 
 /*
@@ -67,6 +66,16 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
   ] = useBatchObjectState({} as Record<string, number>);
 
   const [measuredParentHeight, setMeasuredParentHeight] = useState(0);
+  const [hasMeasuredParent, setHasMeasuredParent] = useState(false);
+  const prevHeightFromParent = usePrevious(fillParentHeight);
+
+  useEffect(() => {
+    // Set to remeasure the parent height if fillParentHeight became active
+    if (!prevHeightFromParent && fillParentHeight) {
+      setMeasuredParentHeight(0);
+      setHasMeasuredParent(false);
+    }
+  }, [fillParentHeight, prevHeightFromParent, contentChangedKey]);
 
   const childrenArray = React.Children.toArray(children) as ReactElement[];
   // like "this" , stores values in an object so callbacks can use the latest values
@@ -124,12 +133,15 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
   }
 
   const heightMotionProps = useSpring({
-    height: Math.max(local.totalChildrenHeight, measuredParentHeight),
+    height: fillParentHeight
+      ? Math.max(local.totalChildrenHeight, measuredParentHeight)
+      : local.totalChildrenHeight,
     config: {
       bounce: 0,
       friction: 25,
       tension: 200 * speed,
     },
+    immediate: fillParentHeight && !hasMeasuredParent,
   });
 
   // To help keep the fading out children behind the fading in
@@ -197,7 +209,10 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
                 transform: [{ translateY }],
                 opacity,
                 zIndex,
-                minHeight: fillParentHeight ? measuredParentHeight : undefined,
+                minHeight:
+                  fillParentHeight && hasMeasuredParent
+                    ? measuredParentHeight
+                    : undefined,
               },
               childOuterWrapperStyle,
             ]}
@@ -206,9 +221,10 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
               style={[
                 childWrapperStyle,
                 {
-                  minHeight: fillParentHeight
-                    ? measuredParentHeight
-                    : undefined,
+                  minHeight:
+                    fillParentHeight && hasMeasuredParent
+                      ? measuredParentHeight
+                      : undefined,
                 },
               ]}
               onLayout={({ nativeEvent }) => {
@@ -229,7 +245,8 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
     </AnimatedView>
   );
 
-  if (!fillParentHeight) {
+  // if fillParentHeight isn't a boolean dont wrap with the extra view
+  if (fillParentHeight === undefined) {
     return mainTransitionView;
   }
   return (
@@ -240,7 +257,10 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
         if (measuredParentHeight === height) {
           return;
         }
-        setMeasuredParentHeight(nativeEvent.layout.height);
+        if (hasMeasuredParent === false) {
+          setMeasuredParentHeight(nativeEvent.layout.height);
+          setHasMeasuredParent(true);
+        }
       }}
     >
       {mainTransitionView}
