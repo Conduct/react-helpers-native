@@ -57,7 +57,7 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
   hasBackground = false,
   initialChildHeight = 0,
   slideExistingItems = true,
-  fillParentHeight = false,
+  fillParentHeight = undefined,
   ...otherProps
 }) => {
   const [
