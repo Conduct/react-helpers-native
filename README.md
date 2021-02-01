@@ -24,7 +24,7 @@ utils
 
 ```ts
 // package.json
-"dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native#v0.1.5" }
+"dependencies": { "react-helpers-native": "github:Conduct/react-helpers-native#v0.2.4" }
 ```
 
 _installing a specific version tag helps to avoid unexpected updates_
