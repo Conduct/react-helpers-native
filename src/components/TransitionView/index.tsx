@@ -18,7 +18,7 @@ import { AnimatedView } from "../../components/animated";
 import usePrevious from "../../utils/usePrevious";
 import useBatchObjectState from "../../utils/useBatchObjectState";
 
-type FadableChild = ReactElement | false | null | undefined;
+type FadableChild = ReactElement | Element | false | null | undefined;
 
 type OverflowMode = "hidden" | "visible" | "whenShrinking" | "whenGrowing";
 

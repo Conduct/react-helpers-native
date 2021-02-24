@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { ViewProps, StyleProp, ViewStyle } from "react-native";
-declare type FadableChild = ReactElement | false | null | undefined;
+declare type FadableChild = ReactElement | Element | false | null | undefined;
 declare type OverflowMode = "hidden" | "visible" | "whenShrinking" | "whenGrowing";
 declare type Props = {
     contentChangedKey: string | boolean;
