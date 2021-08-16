@@ -1,4 +1,4 @@
-import { animated } from "react-spring/native";
+import { animated } from "@react-spring/native";
 import {
   ViewProps,
   View,

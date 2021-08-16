@@ -1,6 +1,6 @@
 {
   "name": "react-helpers-native",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "**components, utils and hooks for react-native**",
   "main": "./lib/index.js",
   "scripts": {
@@ -51,7 +51,7 @@
     "arrowParens": "always"
   },
   "dependencies": {
-    "react-spring": "^9.0.0-rc.3"
+    "react-spring": "^9.2.4"
   },
   "peerDependencies": {
     "react": "^16.13.1",
