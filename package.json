@@ -1,6 +1,6 @@
 {
   "name": "react-helpers-native",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "**components, utils and hooks for react-native**",
   "main": "./lib/index.js",
   "scripts": {

@@ -45,6 +45,9 @@ prop ideas
 instantCrossFade: enable instant crossfading, but still allow fading out?
 */
 
+// used to get a relative time, since Date.now() returned number is too large for zIndex, and can cause a crash with react-native bridge
+const fileOpenedTime = Date.now();
+
 const TransitionViewWithoutMemo: React.FC<Props> = ({
   contentChangedKey,
   speed = 1,
@@ -143,7 +146,7 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
   });
 
   // To help keep the fading out children behind the fading in
-  const rerenderTime = Date.now();
+  const rerenderTime = Date.now() - fileOpenedTime; // minusing fileOpenedTime to keep the number small (e.g 12592 vs 163289321592)
 
   const [transitions] = useTransition<
     typeof childrenListData[number],
