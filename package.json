@@ -1,6 +1,6 @@
 {
   "name": "react-helpers-native",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "**components, utils and hooks for react-native**",
   "main": "./lib/index.js",
   "scripts": {
@@ -28,8 +28,8 @@
   "typings": "./lib/index.d.ts",
   "devDependencies": {
     "@react-native-community/eslint-config": "^1.1.0",
-    "@types/react": "^16.9.43",
-    "@types/react-native": "^0.63.2",
+    "@types/react": "^17.0.2",
+    "@types/react-native": "^0.66.0",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
     "babel-eslint": "^10.1.0",
@@ -40,7 +40,7 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "prettier": "^2.0.5",
-    "react": "^16.13.1",
+    "react": "^17.0.2",
     "typescript": "^4.7.4"
   },
   "files": [
@@ -55,7 +55,7 @@
     "react-spring": "^9.5.2"
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-native": "^0.63.2"
+    "react": "^17.0.2",
+    "react-native": "^0.66.0"
   }
 }
