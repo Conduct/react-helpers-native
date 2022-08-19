@@ -162,7 +162,9 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
       keys: ({ id }) => id + (slideExistingItems ? "" : contentChangedKey),
       from: ({ y }) => ({
         translateY: y,
-        opacity: 0,
+        // opacity: 0,
+        // FIXME NOTE opacity transitions stopped working recently, so have disabled for now
+        opacity: 1,
         zIndex: rerenderTime,
       }),
       enter: ({ y }) => ({
@@ -171,7 +173,9 @@ const TransitionViewWithoutMemo: React.FC<Props> = ({
         zIndex: rerenderTime,
       }),
       leave: ({ y }) => ({
-        opacity: 0,
+        // opacity: 0,
+        // FIXME NOTE opacity transitions stopped working recently, so have disabled for now
+        opacity: 1,
         translateY: y,
         delay: hasBackground ? 250 : 0,
         zIndex: rerenderTime - 100,
