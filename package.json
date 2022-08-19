@@ -1,6 +1,6 @@
 {
   "name": "react-helpers-native",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "**components, utils and hooks for react-native**",
   "main": "./lib/index.js",
   "scripts": {
@@ -27,21 +27,21 @@
   "homepage": "https://github.com/Conduct/react-helpers-native#readme",
   "typings": "./lib/index.d.ts",
   "devDependencies": {
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/react": "^16.9.43",
+    "@types/react-native": "^0.63.2",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
     "@typescript-eslint/parser": "^3.7.1",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.5.0",
+    "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "babel-eslint": "^10.1.0",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.7",
     "react": "^16.13.1",
-    "@types/react": "^16.9.43",
-    "@react-native-community/eslint-config": "^1.1.0",
-    "@types/react-native": "^0.63.2"
+    "typescript": "^4.7.4"
   },
   "files": [
     "lib/**/*"
@@ -51,7 +51,8 @@
     "arrowParens": "always"
   },
   "dependencies": {
-    "react-spring": "^9.2.4"
+    "@react-spring/native": "^9.5.2",
+    "react-spring": "^9.5.2"
   },
   "peerDependencies": {
     "react": "^16.13.1",
